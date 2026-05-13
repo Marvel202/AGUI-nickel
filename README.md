@@ -14,7 +14,7 @@ The project currently centers on the `agui-nickel` application directory.
 ```text
 GenUI/
 ├── agui-nickel/
-│   ├── L2.ipynb          # Notebook workflow
+│   ├── aguitest.ipynb    # Notebook workflow
 │   ├── main.py           # Terminal-only backend entrypoint
 │   ├── helper.py         # Notebook and local helper utilities
 │   └── frontend/         # React + Vite + CopilotKit frontend
@@ -69,7 +69,7 @@ npm install
 
 You should use one workflow at a time.
 
-- Notebook workflow: run the lesson from `agui-nickel/L2.ipynb`
+- Notebook workflow: run the lesson from `agui-nickel/aguitest.ipynb`
 - Terminal-only workflow: run `agui-nickel/main.py` and `agui-nickel/frontend`
 
 Do not run both workflows at the same time, or you will get port conflicts.
@@ -84,7 +84,7 @@ source genui/bin/activate
 jupyter notebook
 ```
 
-Then open `agui-nickel/L2.ipynb` and run the lesson cells in order.
+Then open `agui-nickel/aguitest.ipynb` and run the lesson cells in order.
 
 Expected lesson ports:
 
