@@ -53,7 +53,6 @@ GOOGLE_API_KEY=your_google_api_key_here
 Use the existing virtual environment in `genui`:
 
 ```bash
-cd /Users/ritakoon/Desktop/GenAI/GenUI
 source genui/bin/activate
 ./genui/bin/python -m pip install -r requirements.txt
 ```
@@ -61,7 +60,7 @@ source genui/bin/activate
 ### Frontend
 
 ```bash
-cd /Users/ritakoon/Desktop/GenAI/GenUI/agui-nickel/frontend
+cd agui-nickel/frontend
 npm install
 ```
 
@@ -79,7 +78,6 @@ Do not run both workflows at the same time, or you will get port conflicts.
 Start Jupyter:
 
 ```bash
-cd /Users/ritakoon/Desktop/GenAI/GenUI
 source genui/bin/activate
 jupyter notebook
 ```
@@ -105,7 +103,7 @@ Use this when you do not want to run the notebook.
 ### Terminal 1: Backend
 
 ```bash
-cd /Users/ritakoon/Desktop/GenAI/GenUI/agui-nickel
+cd agui-nickel
 source ../genui/bin/activate
 python main.py
 ```
@@ -119,7 +117,7 @@ http://localhost:8000
 ### Terminal 2: Frontend and Runtime
 
 ```bash
-cd /Users/ritakoon/Desktop/GenAI/GenUI/agui-nickel/frontend
+cd agui-nickel/frontend
 LANGGRAPH_DEPLOYMENT_URL=http://localhost:8000 npm run dev -- --port 3002
 ```
 
