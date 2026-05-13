@@ -164,11 +164,6 @@ If the issue returns, confirm that:
 - the runtime is running on `4002`
 - the backend is running on `8000` for terminal mode or `8002` for notebook mode
 
-### The model says it is GPT-4
-
-Do not trust the model's self-description as proof of which backend is running.
-
-The actual configured backend is determined by the code in `agui-nickel/main.py` and the active runtime process.
 
 ## Stop the App
 
