@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+genui/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+
+# Environment and local runtime files
+.env
+*.log
+dev-logs.txt
+
+# macOS
+.DS_Store
