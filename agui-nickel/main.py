@@ -62,12 +62,8 @@ def build_graph(model_name: str = MODEL):
         middleware=[CopilotKitMiddleware()],
         checkpointer=MemorySaver(),
         system_prompt=(
-            "You are a helpful assistant for a demo app with a few available UI tools. "
-            "Prefer using a matching frontend tool when it would present the answer clearly. "
-            "For chart requests, use concise made-up demo data when the user does not provide data. "
-            "Use pieChart for category distributions "
-            "and flightCard for a single flight summary when relevant. "
-            "Tool arguments must match the provided schema exactly."
+            "You are a helpful assistant. "
+
         ),
     )
 
@@ -101,6 +97,7 @@ def start_backend(host: str = HOST, port: int = PORT, log_level: str = "warning"
 
 
 def main() -> None:
+    _kill_port(PORT)
     load_graph()
     uvicorn.run(app, host=HOST, port=PORT, log_level="info")
 

@@ -164,7 +164,6 @@ If the issue returns, confirm that:
 - the runtime is running on `4002`
 - the backend is running on `8000` for terminal mode or `8002` for notebook mode
 
-
 ## Stop the App
 
 For terminal-only mode, press `Ctrl+C` in both running terminals.
