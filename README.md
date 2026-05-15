@@ -23,6 +23,37 @@ GenUI/
 └── README.md
 ```
 
+## Architecture
+
+```text
+╔════════════════════════════════════╗   ←  FRONTEND
+║  React App          Port 3002      ║
+║  CopilotKit Provider               ║
+║  CopilotChat Component             ║
+╠════════════════════════════════════╣
+║  RUNTIME LAYER      Port 4002      ║
+║  CopilotRuntime (Hono Server)      ║
+║  Agent Registry:                   ║
+║  - default -> LangGraph agent      ║
+║  - gemini  -> ADK agent            ║
+║  AG-UI Connectors                  ║
+╠════════════════════════════════════╣
+║  AG-UI PROTOCOL                    ║
+║  Open • Lightweight • Event-based  ║
+║  (Frontend ↔ Agent communication)  ║
+╠════════════════════════════════════╣
+║  LANGCHAIN AGENT    Port 8000      ║
+║  FastAPI                           ║
+║  LangGraphAGUIAgent + Middleware   ║
+║  Mistral via LangChain             ║
+╠════════════════════════════════════╣
+║  GOOGLE ADK AGENT   Port 8009      ║
+║  FastAPI                           ║
+║  ADKAgent + Gemini                 ║
+║  Optional second backend           ║
+╚════════════════════════════════════╝
+```
+
 ## Prerequisites
 
 - Python 3.13
