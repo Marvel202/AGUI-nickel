@@ -21,7 +21,7 @@ from langgraph.checkpoint.memory import MemorySaver
 
 HOST = "0.0.0.0"
 PORT = 8000
-MODEL = "mistral-large-latest"
+MODEL = "mistral-medium-latest"
 
 _server_started = False
 _server_lock = threading.Lock()
@@ -45,9 +45,9 @@ def _ensure_mistral_api_key() -> None:
     if os.environ.get("MISTRAL_API_KEY"):
         return
 
-    repo_root = Path(__file__).resolve().parents[1]
-    if str(repo_root) not in sys.path:
-        sys.path.insert(0, str(repo_root))
+    app_dir = Path(__file__).resolve().parent
+    if str(app_dir) not in sys.path:
+        sys.path.insert(0, str(app_dir))
 
     from helper import get_mistral_api_key
 
@@ -69,6 +69,13 @@ def build_graph(model_name: str = MODEL):
 
 
 app = FastAPI()
+
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok", "agent": "default", "model": MODEL}
+
+
 agent = LangGraphAGUIAgent(
     name="lesson2_agent",
     description="Lesson 2 chart agent",

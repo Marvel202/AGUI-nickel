@@ -15,6 +15,7 @@ export default defineConfig({
     allowedHosts: true,
     strictPort: true,
     proxy: {
+      "/api/agent-status": "http://localhost:4002",
       "/api/copilotkit": "http://localhost:4002",
     },
   },
