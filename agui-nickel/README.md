@@ -63,7 +63,7 @@ GenUI/
 
 Optional:
 
-- A Google API key if you want to work on the notebook bonus section
+- A Google API key if you want to use the Gemini backend
 - Jupyter if you want to run the notebook workflow
 
 ## Environment Variables
@@ -75,7 +75,7 @@ MISTRAL_API_KEY=your_mistral_api_key_here
 GOOGLE_API_KEY=your_google_api_key_here
 ```
 
-`GOOGLE_API_KEY` is only needed for the notebook bonus section.
+`GOOGLE_API_KEY` is optional for the default Mistral flow, but required if you want Gemini to be available in the terminal UI.
 
 ## Install Dependencies
 
@@ -101,6 +101,7 @@ You should use one workflow at a time.
 
 - Notebook workflow: run the lesson from `agui-nickel/aguitest.ipynb`
 - Terminal-only workflow: run `agui-nickel/main.py` and `agui-nickel/frontend`
+- Gemini in terminal mode: also run `agui-nickel/gemini_backend.py`
 
 Do not run both workflows at the same time, or you will get port conflicts.
 
@@ -131,6 +132,8 @@ http://localhost:3002
 
 Use this when you do not want to run the notebook.
 
+The default terminal flow starts Mistral only. If you also want Gemini in the frontend selector, run the optional third terminal below.
+
 ### Terminal 1: Backend
 
 ```bash
@@ -157,6 +160,24 @@ This starts:
 - Frontend on `3002`
 - CopilotKit runtime on `4002`
 
+### Terminal 3: Optional Gemini Backend
+
+Run this only if you want Gemini to appear as an available agent in the frontend.
+
+```bash
+cd agui-nickel
+source ../genui/bin/activate
+python gemini_backend.py
+```
+
+This starts the Gemini backend on:
+
+```text
+http://localhost:8009
+```
+
+After it starts, open or refresh the app at `http://localhost:3002` and select `Gemini` from the backend dropdown.
+
 Open the app at:
 
 ```text
@@ -165,18 +186,23 @@ http://localhost:3002
 
 ## Current Model Configuration
 
-The current non-bonus backend is configured for:
+The default terminal backend is configured for:
 
 - Provider: Mistral
 - Model: `mistral-large-latest`
 
-The frontend currently targets the default LangGraph-backed agent, not the bonus Gemini agent.
+The frontend can route to either of these agents:
+
+- `default`: the LangGraph-backed Mistral backend on `8000`
+- `gemini`: the ADK-backed Gemini backend on `8009`
+
+Gemini is only selectable when `gemini_backend.py` is running and `GOOGLE_API_KEY` is set.
 
 ## Common Issues
 
 ### Port already in use
 
-If you see errors for `3002`, `4002`, `8000`, or `8002`, another copy of the app is already running.
+If you see errors for `3002`, `4002`, `8000`, `8002`, or `8009`, another copy of the app is already running.
 
 This usually happens when:
 
@@ -194,9 +220,10 @@ If the issue returns, confirm that:
 - the frontend is running on `3002`
 - the runtime is running on `4002`
 - the backend is running on `8000` for terminal mode or `8002` for notebook mode
+- the Gemini backend is running on `8009` if you selected `Gemini`
 
 ## Stop the App
 
-For terminal-only mode, press `Ctrl+C` in both running terminals.
+For terminal-only mode, press `Ctrl+C` in the two required terminals, and also stop the Gemini terminal if you started `gemini_backend.py`.
 
 For notebook mode, stop the running cells or restart the notebook kernel.
