@@ -14,11 +14,11 @@ The project currently centers on the `agui-nickel` application directory.
 ```text
 GenUI/
 ├── agui-nickel/
+│   ├── .venv/            # Isolated Python 3.11 environment (uv)
 │   ├── aguitest.ipynb    # Notebook workflow
 │   ├── main.py           # Terminal-only backend entrypoint
 │   ├── helper.py         # Notebook and local helper utilities
 │   └── frontend/         # React + Vite + CopilotKit frontend
-├── genui/                # Python virtual environment
 ├── requirements.txt      # Python dependencies
 └── README.md
 ```
@@ -56,7 +56,7 @@ GenUI/
 
 ## Prerequisites
 
-- Python 3.13
+- Python 3.11+
 - Node.js 22+
 - npm
 - A Mistral API key
@@ -81,12 +81,16 @@ GOOGLE_API_KEY=your_google_api_key_here
 
 ### Python
 
-Use the existing virtual environment in `genui`:
+Use the isolated virtual environment inside `agui-nickel/`:
 
 ```bash
-source genui/bin/activate
-./genui/bin/python -m pip install -r requirements.txt
+source .venv/bin/activate
 ```
+
+> Create it once with:
+> ```bash
+> uv venv --python 3.11 && uv pip install -r ../requirements.txt
+> ```
 
 ### Frontend
 
@@ -110,7 +114,7 @@ Do not run both workflows at the same time, or you will get port conflicts.
 Start Jupyter:
 
 ```bash
-source genui/bin/activate
+source .venv/bin/activate
 jupyter notebook
 ```
 
@@ -138,7 +142,7 @@ The default terminal flow starts Mistral only. If you also want Gemini in the fr
 
 ```bash
 cd agui-nickel
-source ../genui/bin/activate
+source .venv/bin/activate
 python main.py
 ```
 
@@ -166,7 +170,7 @@ Run this only if you want Gemini to appear as an available agent in the frontend
 
 ```bash
 cd agui-nickel
-source ../genui/bin/activate
+source .venv/bin/activate
 python gemini_backend.py
 ```
 
